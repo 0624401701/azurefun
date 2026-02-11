@@ -65,12 +65,13 @@ jobs:
           unzip release.zip
           rm release.zip
         
-      - name: Login to Azure
+     
+      - name: Azure login
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.__clientidsecretname__ }}
-          tenant-id: ${{ secrets.__tenantidsecretname__ }}
-          subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_8A9C435EFFF240479C25B2C91631CCAF }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A3660F0FDD4940B69A99DEE0088DD7D7 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_528DAE8C9B2D4843BB5D30647A78FC98 }}
 
       - name: 'Deploy to Azure Functions'
         uses: Azure/functions-action@v1
@@ -79,3 +80,4 @@ jobs:
           app-name: 'funappli'  # Replace with your Azure Function app name
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+
